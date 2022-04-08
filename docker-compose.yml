@@ -1,0 +1,41 @@
+version: '3.8'
+services:
+    mysql:
+        image: mysql:5.7
+        env_file: ./.env
+        container_name: mysql
+        volumes:
+            - ./init.sql:/data/application/init.sql
+            - db:/var/lib/mysql
+        environment:
+# using root by default with no password, just for testing trials, not for production :)
+#            - MYSQL_USER=root
+            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_DATABASE=messages
+        ports:
+            - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+        command: --init-file /data/application/init.sql
+
+    guestbook:
+        depends_on:
+            - mysql
+        image: guestbook/backend_ext:1.1
+        container_name: guestbook
+        env_file: ./.env
+        build:
+            context: .
+            dockerfile: ./Dockerfile_external_1.2
+            args:
+               JAR_FILE: guestbook-0.0.1-external_config.jar
+        environment:
+            SPRING_APPLICATION_JSON: '{
+                    "spring.datasource.url"  : "jdbc:mysql://mysql:$MYSQLDB_DOCKER_PORT/messages?useSSL=false",
+                    "spring.datasource.username" : "root",
+                    "spring.datasource.password" : ""
+            }'
+        ports:
+            - 8081:8081
+        stdin_open: true
+        tty: true
+volumes:
+  db:        
