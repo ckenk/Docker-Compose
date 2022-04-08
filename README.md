@@ -20,3 +20,5 @@ Should see some HATEOAS json response similar to:
 ```
 Following the link `http://localhost:8081/guestbookMessages` will show the data retrived from the MySQL<br>
 and using a POST request should be able to create new messages in the DB.
+
+`curl -X POST -H "content-type: application/json" -d '{"name": "NewUser", "message": "New Message"}' http://localhost:8081/guestbookMessages`
