@@ -1,5 +1,6 @@
 # Docker-Compose
-A Docker Compose project with Docker, Spring Boot and MySQL.<br>
+[Docker Compose](https://docs.docker.com/compose/) helps to defining and running multi-container applications.<br/>
+This Docker Compose project combines Docker, Spring Boot and MySQL.<br>
 Initialize a MySQL DB container and a Spring Boot container that connects to it.<br>
 
 Start the containers with `docker-compose up`.<br>
