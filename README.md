@@ -8,6 +8,8 @@ Create a docker image in the local system using the `guestbook-0.0.1-external_co
 <pre>sudo docker build --build-arg JAR_FILE=*.jar -t guestbook/backend_ext:1.1 -f Dockerfile_external_1.2 .</pre>
 
 Then start the containers with `docker-compose up` (which uses the `docker-compose.yml`).<br>
+Docker compose will use `.env` for parameters found in `docker-compose.yml` and initialize the MySQL DB with `init.sql`.<br/>
+
 Then try out `http://localhost:8081/`<br>
 Should see some HATEOAS json response similar to:
 ```json
