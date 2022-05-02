@@ -1,4 +1,8 @@
 # Docker-Compose
+
+Create a docker image in the local system using the `guestbook-0.0.1-external_config.jar` as
+<pre>sudo docker build --build-arg JAR_FILE=*.jar -t guestbook/backend_ext:1.1 -f Dockerfile_external_1.2 .</pre>
+
 [Docker Compose](https://docs.docker.com/compose/) helps to defining and running multi-container applications.<br/>
 This Docker Compose project combines Docker, Spring Boot and MySQL.<br>
 Initialize a MySQL DB container and a Spring Boot container that connects to it.<br>
